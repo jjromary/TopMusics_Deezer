@@ -1,5 +1,12 @@
+import { Outlet } from "react-router";
+import { LayoutDefaultContainer } from "./styles";
+
 export default function defaultLayout() {
   return (
-    <h1>Default Layout</h1>
+    <LayoutDefaultContainer>
+      <h1>Default Layout</h1>
+
+      <Outlet />
+    </LayoutDefaultContainer>
   )
 }
