@@ -14,7 +14,6 @@ export default function Header() {
           background="#00875f"
         >
           Minhas Músicas Favoritas
-
         </ButtonContainer>
 
       </HeaderContent>
