@@ -1,5 +1,5 @@
-import { ButtonContainer } from "../Button/styles";
 
+import Button from "../Button";
 import { HeaderContainer, HeaderContent } from "./styles";
 
 export default function Header() {
@@ -8,13 +8,14 @@ export default function Header() {
       <HeaderContent>
         <h1>Top Músicas Brasil <span>by Deezer</span></h1>
 
-        <ButtonContainer
+        <Button
           height="50px"
           width="247px"
           background="#00875f"
+          colorText="#FFFFFF"
         >
           Minhas Músicas Favoritas
-        </ButtonContainer>
+        </Button>
 
       </HeaderContent>
     </HeaderContainer>

@@ -4,6 +4,7 @@ interface ButtonContainerProps {
   width: string;
   height: string;
   background: string;
+  colorText: string;
 }
 
 export const ButtonContainer = styled.button<ButtonContainerProps>`
@@ -15,10 +16,10 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
   padding: 0 0.5rem;
 
   font-size: 1.125rem;
-  font-weight: bold;
-  color: ${(props) => props.theme["gray300"]};
+  font-weight: 400;
+  color: ${(props) => props.colorText};
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 `;
