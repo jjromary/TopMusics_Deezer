@@ -10,7 +10,8 @@ export const CardTrackContainer = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  background: linear-gradient(180deg, #1ea483 0%, #00875f 100%);
+  /* background: linear-gradient(180deg, #1ea483 0%, #00875f 100%); */
+  background-color: #1ea483;
   box-shadow: 0px 0px 48px rgba(0, 0, 0, 0.9);
   border-radius: 1.125rem;
 `;
@@ -34,10 +35,6 @@ export const ArtistDetails = styled.div`
   span {
     color: #ffffff;
   }
-`;
-
-export const AudioContent = styled.div`
-  margin: 0 2.5rem 0 2.563rem;
 `;
 
 export const ButtonsContent = styled.div`
