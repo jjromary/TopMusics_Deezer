@@ -4,6 +4,7 @@ export const HeaderContainer = styled.div`
   width: 100%;
   height: 100px;
   background-color: ${(props) => props.theme["gray900"]};
+  margin-bottom: 1.875rem;
 `;
 
 export const HeaderContent = styled.div`

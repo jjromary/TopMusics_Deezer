@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
 export const SearchFormContainer = styled.form`
+  width: 100%;
+  max-width: 1120px;
   display: flex;
   gap: 1rem;
-  margin-bottom: 2.25rem;
+  margin: 0 auto;
 
   input {
     flex: 1;
