@@ -1,8 +1,8 @@
 import { HeartStraight } from 'phosphor-react';
 import artist from '../../assets/artist.jpg';
-import sample from '../../assets/sample.mp3';
 import Button from '../Button';
-import { ArtistContent, ArtistDetails, AudioContent, ButtonsContent, CardTrackContainer } from "./styles";
+import Play from '../Play';
+import { ArtistContent, ArtistDetails, ButtonsContent, CardTrackContainer } from "./styles";
 
 export default function CardTrack() {
   return (
@@ -17,12 +17,7 @@ export default function CardTrack() {
 
       </ArtistContent>
 
-      <AudioContent>
-        <audio controls>
-          <source src={sample} type="audio/mp3" />
-          seu navegador não suporta HTML5
-        </audio>
-      </AudioContent>
+      <Play />
 
       <ButtonsContent>
         <Button
