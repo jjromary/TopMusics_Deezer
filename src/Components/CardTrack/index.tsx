@@ -1,6 +1,6 @@
 import { HeartStraight } from 'phosphor-react';
-import { useContext, useState } from 'react';
-import { TracksContext } from '../../Context/TracksContext';
+import { useState } from 'react';
+import { FavoriteButton } from '../../Pages/Home/styles';
 import Button from '../Button';
 import Player from '../Player';
 import {
@@ -8,7 +8,7 @@ import {
   ArtistDetails,
   BottomContent,
   ButtonContent,
-  CardTrackContainer, FavoriteButton, PlayerContent, TopContent
+  CardTrackContainer, PlayerContent, TopContent
 } from "./styles";
 
 interface CardTrackProps {
@@ -30,17 +30,13 @@ export default function CardTrack({
   artist,
   title,
 }: CardTrackProps) {
-  const { tracks } = useContext(TracksContext)
-
-  const [favorited, setFavorited] = useState(false)
+  const [favorite, setFavorite] = useState(Boolean)
 
   const handleFavorite = () => {
-    if (favorited === false) {
-      setFavorited(true)
-      tracks.map((track) => {
-      })
+    if (favorite === false) {
+      setFavorite(true)
     } else {
-      setFavorited(false)
+      setFavorite(false)
     }
   }
 
@@ -70,8 +66,9 @@ export default function CardTrack({
           </ButtonContent>
         </ArtistContent>
         <FavoriteButton onClick={handleFavorite}>
-          <HeartStraight size={32} color={favorited === true ? "red" : '#121214'} />
+          <HeartStraight size={32} color={favorite === true ? "red" : '#121214'} />
         </FavoriteButton>
+
       </TopContent>
 
       <BottomContent>
@@ -81,6 +78,7 @@ export default function CardTrack({
         </PlayerContent>
 
       </BottomContent>
+
 
     </CardTrackContainer>
   )

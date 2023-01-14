@@ -15,12 +15,9 @@ interface Track {
   preview: string;
   link: string;
 }
-
 interface TrackContextType {
   tracks: Track[];
 }
-
-
 interface trackProviderProps {
   children: ReactNode
 }
@@ -30,6 +27,7 @@ export const TracksContext = createContext({} as TrackContextType)
 export function TrackProvider({ children }: trackProviderProps) {
 
   const [tracks, setTracks] = useState<Track[]>([])
+
 
   const topTracks = () => {
     api.get("chart/track/?limit=100").then((response) => {
