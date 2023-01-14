@@ -1,44 +1,77 @@
 import { HeartStraight } from 'phosphor-react';
-import artist from '../../assets/artist.jpg';
+import { useState } from 'react';
 import Button from '../Button';
-import Play from '../Play';
-import { ArtistContent, ArtistDetails, ButtonsContent, CardTrackContainer } from "./styles";
+import Player from '../Player';
+import {
+  ArtistContent,
+  ArtistDetails,
+  BottomContent,
+  ButtonContent,
+  CardTrackContainer, FavoriteButton, PlayerContent, TopContent
+} from "./styles";
 
-export default function CardTrack() {
+interface CardTrackProps {
+  artist: string;
+  position: number;
+  album: string;
+  title: string;
+  imgArtistUrl: string;
+  preview: string;
+  linkTrack: string;
+  favorite?: boolean;
+}
+
+export default function CardTrack({ position, album, imgArtistUrl, linkTrack, preview, artist, title }: CardTrackProps) {
+
+  const [favorited, setFavorited] = useState(false)
+
+  const handleFavorite = () => {
+    if (favorited === false) {
+      setFavorited(true)
+    } else {
+      setFavorited(false)
+    }
+  }
+
+  console.log(favorited)
+
   return (
-    <CardTrackContainer>
-      <ArtistContent>
-        <img src={artist} width={85.07} height={83} />
-        <ArtistDetails>
-          <span><strong>Artista:</strong> Marilia Mendonça</span>
-          <span><strong>Título:</strong> Leão</span>
-          <span><strong>Álbum:</strong> Decretos Reais vl 2</span>
-        </ArtistDetails>
+    <CardTrackContainer >
+      <TopContent>
+        <FavoriteButton onClick={handleFavorite}>
+          <HeartStraight size={32} color={favorited === true ? "red" : '#121214'} />
+        </FavoriteButton>
+        <img src={imgArtistUrl} width={126} height={154} />
+        <ArtistContent>
+          <ArtistDetails>
+            <span><strong>Posição:</strong> {position}º</span>
+            <span><strong>Artista:</strong> {artist}</span>
+            <span><strong>Título:</strong> {title}</span>
+            <span><strong>Álbum:</strong> {album}</span>
+          </ArtistDetails>
 
-      </ArtistContent>
+          <ButtonContent>
+            <a target="_blank" href={linkTrack}>
+              <Button
+                height='40px'
+                width='100%'
+                background='#041418'
+                colorText='#FFFFFF'
+              >
+                Acessar Música
+              </Button>
+            </a>
+          </ButtonContent>
+        </ArtistContent>
+      </TopContent>
 
-      <Play />
+      <BottomContent>
 
-      <ButtonsContent>
-        <Button
-          height='50px'
-          width='170px'
-          background='#FFFFFF'
-          colorText='#1EA483'
-        >
-          Acessar Música
-        </Button>
+        <PlayerContent>
+          <Player linkPreview={preview} />
+        </PlayerContent>
 
-        <Button
-          height='50px'
-          width='130px'
-          background='#FFFFFF'
-          colorText='#1EA483'
-        >
-          Favoritar
-          <HeartStraight size={24} />
-        </Button>
-      </ButtonsContent>
+      </BottomContent>
 
     </CardTrackContainer>
   )

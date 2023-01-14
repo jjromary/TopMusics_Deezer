@@ -13,12 +13,11 @@ export default function Header() {
       <HeaderContent>
         <h1>Top Músicas Brasil <span>by Deezer</span></h1>
         <NavLink to={location.pathname === '/' ? '/favorite' : location.pathname === "/favorite" ? '/' : ''} style={{ textDecoration: "none" }}>
-
           <Button
             height="50px"
             width="247px"
-            background="#00875f"
-            colorText="#FFFFFF"
+            background="#FFFFFF"
+            colorText="#7C7C8A"
           >
             {location.pathname === '/' ? "Minhas Músicas Favoritas" : "Lista Top Músicas"}
           </Button>

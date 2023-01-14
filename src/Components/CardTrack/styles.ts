@@ -1,45 +1,73 @@
 import styled from "styled-components";
 
 export const CardTrackContainer = styled.div`
-  width: 100%;
-  height: 110px;
+  width: 550px;
+  height: 228px;
   padding: 0.75rem 1rem;
 
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
 
-  /* background: linear-gradient(180deg, #1ea483 0%, #00875f 100%); */
-  background-color: #1ea483;
-  box-shadow: 0px 0px 48px rgba(0, 0, 0, 0.9);
+  background-color: ${(props) => props.theme["white"]};
   border-radius: 1.125rem;
-`;
-
-export const ArtistContent = styled.div`
-  width: 300px;
-  display: flex;
-  justify-content: space-between;
 
   img {
     object-fit: cover;
+    border-radius: 0.5rem;
   }
 `;
 
-export const ArtistDetails = styled.div`
+export const TopContent = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const FavoriteButton = styled.button`
+  width: 32px;
+  height: 32px;
+  position: relative;
+  left: 485px;
+  border: none;
+  background-color: transparent;
+`;
+
+export const ArtistContent = styled.div`
+  width: 450px;
+  height: 154px;
+  margin-left: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-left: 1rem;
+`;
+
+export const ArtistDetails = styled.div`
+  width: 100%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 0.875rem;
 
   span {
-    color: #ffffff;
+    color: ${(props) => props.theme["gray900"]};
+    font-size: 0.875rem;
+  }
+
+  strong {
+    font-size: 1rem;
   }
 `;
 
-export const ButtonsContent = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 3rem;
+export const BottomContent = styled.div``;
+
+export const PlayerContent = styled.div`
+  width: 100%;
+`;
+
+export const ButtonContent = styled.div`
+  width: 100%;
+  margin-top: 0.625rem;
+  a {
+    text-decoration: none;
+  }
 `;
