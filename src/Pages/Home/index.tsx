@@ -1,43 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import CardTrack from "../../Components/CardTrack";
-import { api } from "../../lib/axios";
+import { TracksContext } from "../../Context/TracksContext";
 import { HomeContainer } from "./styles";
 
-interface TrackProps {
-  id: number;
-  position: number;
-  album: {
-    title: string;
-  },
-  artist: {
-    name: string;
-    picture: string;
-  },
-  title: string;
-  preview: string;
-  link: string;
-  favorite?: boolean;
-}
-
-
-
 export default function Home() {
-
-  const [tracks, setTracks] = useState<TrackProps[]>([])
-
-  const topTracks = () => {
-    api.get("chart/track/?limit=100").then((response) => {
-      const myTracks = response.data.tracks;
-      setTracks(myTracks.data)
-    })
-  }
-
-
-  useEffect(() => {
-    topTracks()
-  }, [])
-
-  console.log(tracks)
+  const { tracks } = useContext(TracksContext)
 
   return (
     <HomeContainer>
@@ -54,7 +21,6 @@ export default function Home() {
             preview={track.preview}
             position={track.position}
           />
-
         )
       })}
 

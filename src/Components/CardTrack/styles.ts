@@ -26,9 +26,10 @@ export const FavoriteButton = styled.button`
   width: 32px;
   height: 32px;
   position: relative;
-  left: 485px;
+
   border: none;
   background-color: transparent;
+  z-index: 1;
 `;
 
 export const ArtistContent = styled.div`

@@ -1,5 +1,6 @@
 import { HeartStraight } from 'phosphor-react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { TracksContext } from '../../Context/TracksContext';
 import Button from '../Button';
 import Player from '../Player';
 import {
@@ -18,29 +19,34 @@ interface CardTrackProps {
   imgArtistUrl: string;
   preview: string;
   linkTrack: string;
-  favorite?: boolean;
 }
 
-export default function CardTrack({ position, album, imgArtistUrl, linkTrack, preview, artist, title }: CardTrackProps) {
+export default function CardTrack({
+  position,
+  album,
+  imgArtistUrl,
+  linkTrack,
+  preview,
+  artist,
+  title,
+}: CardTrackProps) {
+  const { tracks } = useContext(TracksContext)
 
   const [favorited, setFavorited] = useState(false)
 
   const handleFavorite = () => {
     if (favorited === false) {
       setFavorited(true)
+      tracks.map((track) => {
+      })
     } else {
       setFavorited(false)
     }
   }
 
-  console.log(favorited)
-
   return (
     <CardTrackContainer >
       <TopContent>
-        <FavoriteButton onClick={handleFavorite}>
-          <HeartStraight size={32} color={favorited === true ? "red" : '#121214'} />
-        </FavoriteButton>
         <img src={imgArtistUrl} width={126} height={154} />
         <ArtistContent>
           <ArtistDetails>
@@ -63,6 +69,9 @@ export default function CardTrack({ position, album, imgArtistUrl, linkTrack, pr
             </a>
           </ButtonContent>
         </ArtistContent>
+        <FavoriteButton onClick={handleFavorite}>
+          <HeartStraight size={32} color={favorited === true ? "red" : '#121214'} />
+        </FavoriteButton>
       </TopContent>
 
       <BottomContent>
