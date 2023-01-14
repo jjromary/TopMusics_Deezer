@@ -5,4 +5,5 @@ export const LayoutDefaultContainer = styled.main`
   margin: 0 auto;
   height: 100vh;
   flex-direction: column;
+  overflow-y: auto;
 `;
