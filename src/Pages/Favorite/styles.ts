@@ -6,6 +6,8 @@ export const FavoriteContainer = styled.div`
   margin: 2rem auto 0;
 
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2rem 1rem;
+  color: white;
 `;

@@ -1,11 +1,10 @@
-import CardTrack from "../../Components/CardTrack";
 import { FavoriteContainer } from "./styles";
 
 export default function Favorite() {
+
   return (
     <FavoriteContainer>
-      <CardTrack />
-
+      <h1>Minhas Músicas Favoritas</h1>
     </FavoriteContainer>
   )
 }

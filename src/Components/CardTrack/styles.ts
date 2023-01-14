@@ -22,15 +22,6 @@ export const TopContent = styled.div`
   flex-direction: row;
 `;
 
-export const FavoriteButton = styled.button`
-  width: 32px;
-  height: 32px;
-  position: relative;
-  left: 485px;
-  border: none;
-  background-color: transparent;
-`;
-
 export const ArtistContent = styled.div`
   width: 450px;
   height: 154px;

@@ -10,3 +10,12 @@ export const HomeContainer = styled.div`
   flex-wrap: wrap;
   gap: 2rem 1rem;
 `;
+
+export const FavoriteButton = styled.button`
+  width: 32px;
+  height: 32px;
+  position: relative;
+
+  border: none;
+  background-color: transparent;
+`;

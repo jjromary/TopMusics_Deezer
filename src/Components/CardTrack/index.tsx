@@ -1,5 +1,6 @@
 import { HeartStraight } from 'phosphor-react';
 import { useState } from 'react';
+import { FavoriteButton } from '../../Pages/Home/styles';
 import Button from '../Button';
 import Player from '../Player';
 import {
@@ -7,7 +8,7 @@ import {
   ArtistDetails,
   BottomContent,
   ButtonContent,
-  CardTrackContainer, FavoriteButton, PlayerContent, TopContent
+  CardTrackContainer, PlayerContent, TopContent
 } from "./styles";
 
 interface CardTrackProps {
@@ -18,29 +19,30 @@ interface CardTrackProps {
   imgArtistUrl: string;
   preview: string;
   linkTrack: string;
-  favorite?: boolean;
 }
 
-export default function CardTrack({ position, album, imgArtistUrl, linkTrack, preview, artist, title }: CardTrackProps) {
-
-  const [favorited, setFavorited] = useState(false)
+export default function CardTrack({
+  position,
+  album,
+  imgArtistUrl,
+  linkTrack,
+  preview,
+  artist,
+  title,
+}: CardTrackProps) {
+  const [favorite, setFavorite] = useState(Boolean)
 
   const handleFavorite = () => {
-    if (favorited === false) {
-      setFavorited(true)
+    if (favorite === false) {
+      setFavorite(true)
     } else {
-      setFavorited(false)
+      setFavorite(false)
     }
   }
-
-  console.log(favorited)
 
   return (
     <CardTrackContainer >
       <TopContent>
-        <FavoriteButton onClick={handleFavorite}>
-          <HeartStraight size={32} color={favorited === true ? "red" : '#121214'} />
-        </FavoriteButton>
         <img src={imgArtistUrl} width={126} height={154} />
         <ArtistContent>
           <ArtistDetails>
@@ -63,6 +65,10 @@ export default function CardTrack({ position, album, imgArtistUrl, linkTrack, pr
             </a>
           </ButtonContent>
         </ArtistContent>
+        <FavoriteButton onClick={handleFavorite}>
+          <HeartStraight size={32} color={favorite === true ? "red" : '#121214'} />
+        </FavoriteButton>
+
       </TopContent>
 
       <BottomContent>
@@ -72,6 +78,7 @@ export default function CardTrack({ position, album, imgArtistUrl, linkTrack, pr
         </PlayerContent>
 
       </BottomContent>
+
 
     </CardTrackContainer>
   )
