@@ -16,7 +16,7 @@ interface CardTrackProps {
   position: number;
   album: string;
   title: string;
-  imgArtistUrl?: string;
+  cover: string;
   preview: string;
   linkTrack: string;
   duration: number;
@@ -25,7 +25,7 @@ interface CardTrackProps {
 export default function CardTrack({
   position,
   album,
-  imgArtistUrl,
+  cover,
   linkTrack,
   preview,
   artist,
@@ -48,7 +48,7 @@ export default function CardTrack({
   return (
     <CardTrackContainer >
       <TopContent>
-        <img src={imgArtistUrl} width={126} height={154} />
+        <img src={cover} width={126} height={154} />
         <ArtistContent>
           <ArtistDetails>
             <span><strong>Posição:</strong> {position}º</span>
