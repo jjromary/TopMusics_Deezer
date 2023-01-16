@@ -16,9 +16,10 @@ interface CardTrackProps {
   position: number;
   album: string;
   title: string;
-  imgArtistUrl: string;
+  imgArtistUrl?: string;
   preview: string;
   linkTrack: string;
+  duration: number;
 }
 
 export default function CardTrack({
@@ -29,8 +30,11 @@ export default function CardTrack({
   preview,
   artist,
   title,
+  duration,
 }: CardTrackProps) {
   const [favorite, setFavorite] = useState(Boolean)
+
+  const durationTrack = Math.floor(duration / 60) + ':' + ('0' + Math.floor(duration % 60)).slice(-2);
 
   const handleFavorite = () => {
     if (favorite === false) {
@@ -40,6 +44,7 @@ export default function CardTrack({
     }
   }
 
+
   return (
     <CardTrackContainer >
       <TopContent>
@@ -48,7 +53,7 @@ export default function CardTrack({
           <ArtistDetails>
             <span><strong>Posição:</strong> {position}º</span>
             <span><strong>Artista:</strong> {artist}</span>
-            <span><strong>Título:</strong> {title}</span>
+            <span><strong>Título:</strong> {title} - {durationTrack}</span>
             <span><strong>Álbum:</strong> {album}</span>
           </ArtistDetails>
 
