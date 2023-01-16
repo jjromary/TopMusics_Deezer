@@ -4,12 +4,21 @@ import { TracksContext } from "../../Context/TracksContext";
 import { HomeContainer } from "./styles";
 
 export default function Home() {
-  const { tracks } = useContext(TracksContext)
+  const { tracks, search } = useContext(TracksContext)
+
+  const lowerSearch = search.toLowerCase()
+
+  const artistsFilter =
+    tracks.filter((track) =>
+      track.artist.name.toLowerCase().includes(lowerSearch) ||
+      track.album.title.toLowerCase().includes(lowerSearch) ||
+      track.title.toLowerCase().includes(lowerSearch)
+    )
 
   return (
     <HomeContainer>
 
-      {tracks.map((track) => {
+      {artistsFilter.map((track) => {
         return (
           <CardTrack
             key={track.id}
@@ -20,6 +29,7 @@ export default function Home() {
             linkTrack={track.link}
             preview={track.preview}
             position={track.position}
+            duration={track.duration}
           />
         )
       })}

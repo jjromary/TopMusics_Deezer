@@ -1,9 +1,13 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useState } from "react";
 import { api } from "../lib/axios";
 
 interface Track {
   id: number;
   position: number;
+  title: string;
+  preview: string;
+  link: string;
+  duration: number;
   album: {
     title: string;
   },
@@ -11,12 +15,12 @@ interface Track {
     name: string;
     picture: string;
   },
-  title: string;
-  preview: string;
-  link: string;
 }
+
 interface TrackContextType {
   tracks: Track[];
+  search: string;
+  setSearch: Dispatch<SetStateAction<string>>;
 }
 interface trackProviderProps {
   children: ReactNode
@@ -25,11 +29,12 @@ interface trackProviderProps {
 export const TracksContext = createContext({} as TrackContextType)
 
 export function TrackProvider({ children }: trackProviderProps) {
-
   const [tracks, setTracks] = useState<Track[]>([])
+  const [search, setSearch] = useState('')
 
+  console.log(tracks)
 
-  const topTracks = () => {
+  const loadTracks = () => {
     api.get("chart/track/?limit=100").then((response) => {
       const myTracks = response.data.tracks;
       setTracks(myTracks.data)
@@ -37,12 +42,12 @@ export function TrackProvider({ children }: trackProviderProps) {
   }
 
   useEffect(() => {
-    topTracks()
+    loadTracks()
   }, [])
 
 
   return (
-    <TracksContext.Provider value={{ tracks }}>
+    <TracksContext.Provider value={{ tracks, search, setSearch }}>
       {children}
     </TracksContext.Provider>
   )

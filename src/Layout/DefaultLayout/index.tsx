@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
 import Header from "../../Components/Header";
-import { SearchForm } from "../../Components/SearchForm";
+import { SearchForm } from "../../Components/Search";
 import { LayoutDefaultContainer } from "./styles";
 
 export default function defaultLayout() {
