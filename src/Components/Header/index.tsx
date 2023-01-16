@@ -11,7 +11,7 @@ export default function Header() {
   return (
     <HeaderContainer>
       <HeaderContent>
-        <h1>Músicas <span>by Deezer</span></h1>
+        <h1>Top Músicas <span>by Deezer</span></h1>
         <NavLink to={location.pathname === '/' ? '/favorite' : location.pathname === "/favorite" ? '/' : ''} style={{ textDecoration: "none" }}>
           <Button
             height="50px"
