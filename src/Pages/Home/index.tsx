@@ -20,7 +20,7 @@ export default function Home() {
     const intersactionObserver = new IntersectionObserver((entries) => {
 
       if (entries.some((entry) => entry.isIntersecting)) {
-        setLimitPage((setLimitPageInsiderState => setLimitPageInsiderState + 6))
+        setLimitPage((setLimitPageInsiderState => setLimitPageInsiderState + 3))
       }
     });
 
@@ -52,6 +52,7 @@ export default function Home() {
           );
         })}
         {!isLoading && <Loading />}
+
         <div id='limiter' style={{ marginTop: '2rem' }} />
       </HomeContainer>
     </>

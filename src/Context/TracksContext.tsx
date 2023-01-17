@@ -34,7 +34,7 @@ export const TracksContext = createContext({} as TrackContextType)
 export function TrackProvider({ children }: trackProviderProps) {
   const [tracks, setTracks] = useState<Track[]>([])
   const [search, setSearch] = useState('')
-  const [limitPage, setLimitPage] = useState(6)
+  const [limitPage, setLimitPage] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
 
   const loadTracks = async () => {
@@ -48,12 +48,10 @@ export function TrackProvider({ children }: trackProviderProps) {
   }
 
   useEffect(() => {
-    setTimeout(() => {
-      console.log("isLoading", isLoading)
-      loadTracks()
-      setIsLoading(false)
-      console.log(tracks)
-    }, 1000)
+    console.log("isLoading", isLoading)
+    loadTracks()
+    setIsLoading(false)
+    console.log(tracks)
   }, [limitPage])
 
 
