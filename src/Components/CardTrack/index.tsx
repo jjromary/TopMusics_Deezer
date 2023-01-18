@@ -13,7 +13,7 @@ import {
 
 interface CardTrackProps {
   artist: string;
-  position: number;
+  position?: number;
   album: string;
   title: string;
   cover: string;
@@ -51,7 +51,7 @@ export default function CardTrack({
         <img src={cover} width={126} height={154} />
         <ArtistContent>
           <ArtistDetails>
-            <span><strong>Posição:</strong> {position}º</span>
+            {position && <span><strong>Posição:</strong> {position}º</span>}
             <span><strong>Artista:</strong> {artist}</span>
             <span><strong>Título:</strong> {title} - {durationTrack}</span>
             <span><strong>Álbum:</strong> {album}</span>

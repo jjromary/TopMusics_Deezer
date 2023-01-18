@@ -1,7 +1,7 @@
 import { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useState } from "react";
 import { api } from "../lib/axios";
 
-interface Track {
+export interface Track {
   id: number;
   position: number;
   title: string;
@@ -16,13 +16,20 @@ interface Track {
     name: string;
   },
 }
+
 interface TrackContextType {
   tracks: Track[];
-  search: string;
+  fetchTrack: Track[];
   limitPage: number;
   isLoading: boolean;
+  search: string;
+  isVisibleSearchResult: boolean;
+  setisVisibleSearchResult: Dispatch<SetStateAction<boolean>>;
   setSearch: Dispatch<SetStateAction<string>>;
+  setTracks: Dispatch<SetStateAction<Track[]>>;
   setLimitPage: Dispatch<SetStateAction<number>>
+  setFetchTrack: Dispatch<SetStateAction<Track[]>>
+
   loadTracks: () => Promise<void>;
 }
 interface trackProviderProps {
@@ -33,8 +40,10 @@ export const TracksContext = createContext({} as TrackContextType)
 
 export function TrackProvider({ children }: trackProviderProps) {
   const [tracks, setTracks] = useState<Track[]>([])
+  const [fetchTrack, setFetchTrack] = useState<Track[]>([])
   const [search, setSearch] = useState('')
-  const [limitPage, setLimitPage] = useState(0)
+  const [isVisibleSearchResult, setisVisibleSearchResult] = useState(false)
+  const [limitPage, setLimitPage] = useState(6)
   const [isLoading, setIsLoading] = useState(true)
 
   const loadTracks = async () => {
@@ -43,26 +52,27 @@ export function TrackProvider({ children }: trackProviderProps) {
         limit: limitPage,
       }
     })
-
     setTracks(response.data.tracks.data)
   }
 
   useEffect(() => {
-    console.log("isLoading", isLoading)
     loadTracks()
     setIsLoading(false)
-    console.log(tracks)
   }, [limitPage])
-
 
   return (
     <TracksContext.Provider value={{
       tracks,
-      search,
       limitPage,
       isLoading,
+      fetchTrack,
+      search,
+      isVisibleSearchResult,
+      setisVisibleSearchResult,
       setSearch,
+      setFetchTrack,
       setLimitPage,
+      setTracks,
       loadTracks,
     }}>
       {children}
