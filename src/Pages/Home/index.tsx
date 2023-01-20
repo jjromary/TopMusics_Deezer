@@ -5,14 +5,20 @@ import { TracksContext } from "../../Context/TracksContext";
 import { HomeContainer } from "./styles";
 
 export default function Home() {
-  const { tracks, setLimitPage, isLoading, fetchTrack, search, isVisibleSearchResult } = useContext(TracksContext)
-
+  const {
+    tracks,
+    setLimitPage,
+    isLoading,
+    fetchTrack,
+    search,
+    isVisibleSearchResult,
+  } = useContext(TracksContext)
 
   const infiniteLoading = () => {
     const intersactionObserver = new IntersectionObserver((entries) => {
 
       if (entries.some((entry) => entry.isIntersecting)) {
-        setLimitPage((setLimitPageInsiderState => setLimitPageInsiderState + 3))
+        setLimitPage((setLimitPageInsiderState => setLimitPageInsiderState + 6))
       }
     });
 
@@ -41,7 +47,8 @@ export default function Home() {
                 album={resultFetch.album.title}
                 linkTrack={resultFetch.link}
                 preview={resultFetch.preview}
-                duration={resultFetch.duration} />
+                duration={resultFetch.duration}
+              />
             )
           })
         )}
@@ -58,13 +65,15 @@ export default function Home() {
                 linkTrack={track.link}
                 preview={track.preview}
                 position={track.position}
-                duration={track.duration} />
+                duration={track.duration}
+              />
             );
           })
         )}
         {!isLoading && <Loading />}
 
-        <div id='limiter' style={{ marginTop: '2rem' }} />
+        {/* Limit for start infinite scroll */}
+        <div id='limiter' style={{ marginTop: '1rem' }} />
       </HomeContainer>
     </>
   )
