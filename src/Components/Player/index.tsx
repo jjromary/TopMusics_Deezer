@@ -39,11 +39,9 @@ export default function Player({ linkPreview }: PlayerProps) {
     const seconds = Math.floor(audioPlayer.current.duration)
     setDuration(seconds)
     progressBar.current.max = seconds
-
-
   }, [audioPlayer?.current?.onloadedmetadata, audioPlayer?.current?.readyState])
 
-  const calculateTima = (secs: number) => {
+  const calculateTime = (secs: number) => {
     const minutes = Math.floor(secs / 60)
     const returnMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`
     const seconds = Math.floor(secs % 60)
@@ -89,7 +87,7 @@ export default function Player({ linkPreview }: PlayerProps) {
       </ButtonPlayer>
 
       <CurrentTime>
-        {calculateTima(currentTime)}
+        {calculateTime(currentTime)}
       </CurrentTime>
 
       <ProgressBar>
@@ -102,7 +100,7 @@ export default function Player({ linkPreview }: PlayerProps) {
       </ProgressBar>
 
       <Duration>
-        {!isNaN(duration) && calculateTima(duration)}
+        {!isNaN(duration) && calculateTime(duration)}
       </Duration>
 
 
