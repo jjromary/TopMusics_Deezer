@@ -20,6 +20,7 @@ interface CardTrackProps {
   preview: string;
   linkTrack: string;
   duration: number;
+  favorited?: false;
 }
 
 export default function CardTrack({
@@ -31,19 +32,16 @@ export default function CardTrack({
   artist,
   title,
   duration,
+  favorited
 }: CardTrackProps) {
-  const [favorite, setFavorite] = useState(Boolean)
 
   const durationTrack = Math.floor(duration / 60) + ':' + ('0' + Math.floor(duration % 60)).slice(-2);
 
-  const handleFavorite = () => {
-    if (favorite === false) {
-      setFavorite(true)
-    } else {
-      setFavorite(false)
-    }
-  }
+  const [isFavorite, setIsFavorite] = useState(false)
 
+  const handleFavorite = () => {
+    setIsFavorite(!isFavorite)
+  }
 
   return (
     <CardTrackContainer >
@@ -71,7 +69,7 @@ export default function CardTrack({
           </ButtonContent>
         </ArtistContent>
         <FavoriteButton onClick={handleFavorite}>
-          <HeartStraight size={32} color={favorite === true ? "red" : '#121214'} />
+          <HeartStraight size={32} color={isFavorite === true ? "red" : '#121214'} />
         </FavoriteButton>
 
       </TopContent>

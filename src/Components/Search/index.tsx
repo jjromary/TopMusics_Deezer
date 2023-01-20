@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
 import { TracksContext } from '../../Context/TracksContext'
 import { api } from '../../lib/axios'
@@ -6,7 +6,7 @@ import { SearchContainer } from './styles'
 
 export function SearchForm() {
 
-	const { search, setSearch, setFetchTrack, setisVisibleSearchResult } = useContext(TracksContext)
+	const { search, setSearch, setFetchTrack, setisVisibleSearchResult, limitPage } = useContext(TracksContext)
 
 	const loadFecthTrack = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -21,9 +21,7 @@ export function SearchForm() {
 	}
 
 	useEffect(() => {
-		if (search.length > 2) {
-			loadFecthTrack
-		} else if (search.length === 0) {
+		if (search.length === 0) {
 			< Navigate to="/home" replace={true} />
 			setisVisibleSearchResult(false)
 		}

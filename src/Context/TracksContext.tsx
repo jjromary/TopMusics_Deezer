@@ -46,6 +46,8 @@ export function TrackProvider({ children }: trackProviderProps) {
   const [limitPage, setLimitPage] = useState(6)
   const [isLoading, setIsLoading] = useState(true)
 
+
+
   const loadTracks = async () => {
     const response = await api.get(`chart/track/`, {
       params: {
