@@ -1,5 +1,6 @@
 import { HeartStraight } from 'phosphor-react';
-import { useState } from 'react';
+import { useContext } from 'react';
+import { Track, TracksContext } from '../../Context/TracksContext';
 import { FavoriteButton } from '../../Pages/Home/styles';
 import Button from '../Button';
 import Player from '../Player';
@@ -12,51 +13,39 @@ import {
 } from "./styles";
 
 interface CardTrackProps {
-  artist: string;
-  position?: number;
-  album: string;
-  title: string;
-  cover: string;
-  preview: string;
-  linkTrack: string;
-  duration: number;
-  favorited?: false;
+  track: Track;
 }
 
-export default function CardTrack({
-  position,
-  album,
-  cover,
-  linkTrack,
-  preview,
-  artist,
-  title,
-  duration,
-  favorited
-}: CardTrackProps) {
+export default function CardTrack({ track }: CardTrackProps) {
+  const { setIsFavorite, isFavorite } = useContext(TracksContext)
 
-  const durationTrack = Math.floor(duration / 60) + ':' + ('0' + Math.floor(duration % 60)).slice(-2);
+  const durationTrack = Math.floor(track.duration / 60) + ':' + ('0' + Math.floor(track.duration % 60)).slice(-2);
 
-  const [isFavorite, setIsFavorite] = useState(false)
+  const handleAddFavorite = () => {
+    setIsFavorite([track, ...isFavorite])
 
-  const handleFavorite = () => {
-    setIsFavorite(!isFavorite)
   }
+
+  const handleRemoveFavorite = () => {
+    setIsFavorite(isFavorite.filter((favorite) => favorite.title !== track.title))
+  }
+
+  const verifyFavorite = isFavorite.some((favorite) => favorite.title === track.title)
 
   return (
     <CardTrackContainer >
       <TopContent>
-        <img src={cover} width={126} height={154} />
+        <img src={track.album.cover} width={126} height={154} />
         <ArtistContent>
           <ArtistDetails>
-            {position && <span><strong>Posição:</strong> {position}º</span>}
-            <span><strong>Artista:</strong> {artist}</span>
-            <span><strong>Título:</strong> {title} - {durationTrack}</span>
-            <span><strong>Álbum:</strong> {album}</span>
+            {track.position && <span><strong>Posição:</strong> {track.position}º</span>}
+            <span><strong>Artista:</strong> {track.artist.name}</span>
+            <span><strong>Título:</strong> {track.title} - {durationTrack}</span>
+            <span><strong>Álbum:</strong> {track.album.title}</span>
           </ArtistDetails>
 
           <ButtonContent>
-            <a target="_blank" href={linkTrack}>
+            <a target="_blank" href={track.link}>
               <Button
                 height='40px'
                 width='100%'
@@ -68,8 +57,8 @@ export default function CardTrack({
             </a>
           </ButtonContent>
         </ArtistContent>
-        <FavoriteButton onClick={handleFavorite}>
-          <HeartStraight size={32} color={isFavorite === true ? "red" : '#121214'} />
+        <FavoriteButton onClick={verifyFavorite ? handleRemoveFavorite : handleAddFavorite}>
+          <HeartStraight size={32} color={verifyFavorite ? 'red' : 'black'} />
         </FavoriteButton>
 
       </TopContent>
@@ -77,7 +66,7 @@ export default function CardTrack({
       <BottomContent>
 
         <PlayerContent>
-          <Player linkPreview={preview} />
+          <Player linkPreview={track.preview} />
         </PlayerContent>
 
       </BottomContent>

@@ -6,8 +6,19 @@ export const FavoriteContainer = styled.div`
   margin: 2rem auto 0;
 
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem 1rem;
+`;
+
+export const FeedbackList = styled.span`
+  margin: 0 auto;
+  font-size: 1.5rem;
+`;
+
+export const FavoritesContent = styled.div`
+  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 2rem 1rem;
-  color: white;
 `;

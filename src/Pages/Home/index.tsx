@@ -1,10 +1,10 @@
 import { useContext, useEffect } from "react";
 import CardTrack from "../../Components/CardTrack";
 import Loading from "../../Components/Loading";
-import { TracksContext } from "../../Context/TracksContext";
+import { Track, TracksContext } from "../../Context/TracksContext";
 import { HomeContainer } from "./styles";
 
-export default function Home() {
+export default function Home({ }: Track) {
   const {
     tracks,
     setLimitPage,
@@ -12,6 +12,7 @@ export default function Home() {
     fetchTrack,
     search,
     isVisibleSearchResult,
+    isFavorite,
   } = useContext(TracksContext)
 
   const infiniteLoading = () => {
@@ -27,7 +28,6 @@ export default function Home() {
     return () => intersactionObserver.disconnect()
   }
 
-
   useEffect(() => {
     infiniteLoading()
   }, [])
@@ -39,16 +39,7 @@ export default function Home() {
         {isVisibleSearchResult && (
           fetchTrack.map((resultFetch) => {
             return (
-              <CardTrack
-                key={resultFetch.id}
-                cover={resultFetch.album.cover}
-                title={resultFetch.title}
-                artist={resultFetch.artist.name}
-                album={resultFetch.album.title}
-                linkTrack={resultFetch.link}
-                preview={resultFetch.preview}
-                duration={resultFetch.duration}
-              />
+              <CardTrack key={resultFetch.id} track={resultFetch} />
             )
           })
         )}
@@ -56,17 +47,7 @@ export default function Home() {
         {search.length === 0 && (
           tracks.map((track) => {
             return (
-              <CardTrack
-                key={track.id}
-                cover={track.album.cover}
-                title={track.title}
-                artist={track.artist.name}
-                album={track.album.title}
-                linkTrack={track.link}
-                preview={track.preview}
-                position={track.position}
-                duration={track.duration}
-              />
+              <CardTrack key={track.id} track={track} />
             );
           })
         )}
