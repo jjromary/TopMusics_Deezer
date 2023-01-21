@@ -1,19 +1,14 @@
 import { useContext, useEffect } from "react";
 import CardTrack from "../../Components/CardTrack";
 import Loading from "../../Components/Loading";
+import { SearchContext } from "../../Context/SearchContext";
 import { Track, TracksContext } from "../../Context/TracksContext";
 import { HomeContainer } from "./styles";
 
 export default function Home({ }: Track) {
-  const {
-    tracks,
-    setLimitPage,
-    isLoading,
-    fetchTrack,
-    search,
-    isVisibleSearchResult,
-    isFavorite,
-  } = useContext(TracksContext)
+  const { tracks, setLimitPage, isLoading } = useContext(TracksContext)
+  const { fetchTrack, search, isVisibleSearchResult } = useContext(SearchContext)
+
 
   const infiniteLoading = () => {
     const intersactionObserver = new IntersectionObserver((entries) => {

@@ -18,18 +18,10 @@ export interface Track {
 }
 interface TrackContextType {
   tracks: Track[];
-  fetchTrack: Track[];
   limitPage: number;
   isLoading: boolean;
-  search: string;
-  isVisibleSearchResult: boolean;
-  isFavorite: Track[];
-  setIsFavorite: Dispatch<SetStateAction<Track[]>>;
-  setisVisibleSearchResult: Dispatch<SetStateAction<boolean>>;
-  setSearch: Dispatch<SetStateAction<string>>;
   setTracks: Dispatch<SetStateAction<Track[]>>;
   setLimitPage: Dispatch<SetStateAction<number>>
-  setFetchTrack: Dispatch<SetStateAction<Track[]>>
   loadTracks: () => Promise<void>;
 }
 interface trackProviderProps {
@@ -40,12 +32,8 @@ export const TracksContext = createContext({} as TrackContextType)
 
 export function TrackProvider({ children }: trackProviderProps) {
   const [tracks, setTracks] = useState<Track[]>([])
-  const [fetchTrack, setFetchTrack] = useState<Track[]>([])
-  const [search, setSearch] = useState('')
-  const [isVisibleSearchResult, setisVisibleSearchResult] = useState(false)
   const [limitPage, setLimitPage] = useState(6)
   const [isLoading, setIsLoading] = useState(true)
-  const [isFavorite, setIsFavorite] = useState<Track[]>([])
 
   const loadTracks = async () => {
     const response = await api.get(`chart/track/`, {
@@ -67,14 +55,6 @@ export function TrackProvider({ children }: trackProviderProps) {
       tracks,
       limitPage,
       isLoading,
-      fetchTrack,
-      search,
-      isVisibleSearchResult,
-      isFavorite,
-      setIsFavorite,
-      setisVisibleSearchResult,
-      setSearch,
-      setFetchTrack,
       setLimitPage,
       setTracks,
       loadTracks,

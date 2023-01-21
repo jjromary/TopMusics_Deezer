@@ -1,34 +1,13 @@
-import React, { useContext, useEffect } from 'react'
-import { Navigate } from 'react-router-dom'
-import { TracksContext } from '../../Context/TracksContext'
-import { api } from '../../lib/axios'
+import { useContext } from 'react'
+import { SearchContext } from '../../Context/SearchContext'
 import { SearchContainer } from './styles'
 
 export function SearchForm() {
 
-	const { search, setSearch, setFetchTrack, setisVisibleSearchResult, limitPage } = useContext(TracksContext)
-
-	const loadFecthTrack = async (e: React.FormEvent) => {
-		e.preventDefault();
-
-		const response = await api.get('/search/', {
-			params: {
-				q: search,
-			}
-		})
-		setisVisibleSearchResult(true)
-		setFetchTrack(response.data.data)
-	}
-
-	useEffect(() => {
-		if (search.length === 0) {
-			< Navigate to="/home" replace={true} />
-			setisVisibleSearchResult(false)
-		}
-	}, [search])
+	const { search, setSearch, loadFetchTrack } = useContext(SearchContext)
 
 	return (
-		<SearchContainer onSubmit={loadFecthTrack}>
+		<SearchContainer onSubmit={loadFetchTrack}>
 			<input
 				type='search'
 				placeholder="Pesquise informando nome do Artista, Música ou Álbum"
