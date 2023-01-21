@@ -2,13 +2,12 @@ import { useContext, useEffect } from "react";
 import CardTrack from "../../Components/CardTrack";
 import Loading from "../../Components/Loading";
 import { SearchContext } from "../../Context/SearchContext";
-import { Track, TracksContext } from "../../Context/TracksContext";
+import { TracksContext } from "../../Context/TracksContext";
 import { HomeContainer } from "./styles";
 
-export default function Home({ }: Track) {
+export default function Home() {
   const { tracks, setLimitPage, isLoading } = useContext(TracksContext)
   const { fetchTrack, search, isVisibleSearchResult } = useContext(SearchContext)
-
 
   const infiniteLoading = () => {
     const intersactionObserver = new IntersectionObserver((entries) => {
@@ -22,6 +21,7 @@ export default function Home({ }: Track) {
 
     return () => intersactionObserver.disconnect()
   }
+
 
   useEffect(() => {
     infiniteLoading()
@@ -50,7 +50,9 @@ export default function Home({ }: Track) {
 
         {/* Limit for start infinite scroll */}
         <div id='limiter' style={{ marginTop: '1rem' }} />
+
       </HomeContainer>
+
     </>
   )
 }

@@ -1,14 +1,24 @@
+import { ArrowUp } from "phosphor-react";
 import { Outlet } from "react-router";
 import Header from "../../Components/Header";
 import { SearchForm } from "../../Components/Search";
-import { LayoutDefaultContainer } from "./styles";
+import { BackToTop, LayoutDefaultContainer } from "./styles";
 
 export default function defaultLayout() {
+
+
   return (
-    <LayoutDefaultContainer>
+    <LayoutDefaultContainer >
+      <div id="backToTop"></div>
       <Header />
       <SearchForm />
 
+      <BackToTop href="#backToTop">
+        <ArrowUp size={32} />
+        <button >
+          Back to top
+        </button>
+      </BackToTop>
       <Outlet />
     </LayoutDefaultContainer>
   )

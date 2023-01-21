@@ -8,13 +8,13 @@ import { GlobalStyles } from "./styles/global";
 import { defaultTheme } from "./styles/Themes/defaultTheme";
 
 function App() {
-
   return (
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
         <TrackProvider>
           <SearchProvider>
             <FavoriteProvider>
+
               <Router />
             </FavoriteProvider>
           </SearchProvider>
