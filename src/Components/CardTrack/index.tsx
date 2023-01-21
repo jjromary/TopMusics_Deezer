@@ -1,6 +1,7 @@
 import { HeartStraight } from 'phosphor-react';
 import { useContext } from 'react';
-import { Track, TracksContext } from '../../Context/TracksContext';
+import { FavoriteContext } from '../../Context/FavoritesContext';
+import { Track } from '../../Context/TracksContext';
 import { FavoriteButton } from '../../Pages/Home/styles';
 import Button from '../Button';
 import Player from '../Player';
@@ -17,7 +18,7 @@ interface CardTrackProps {
 }
 
 export default function CardTrack({ track }: CardTrackProps) {
-  const { setIsFavorite, isFavorite } = useContext(TracksContext)
+  const { setIsFavorite, isFavorite } = useContext(FavoriteContext)
 
   const durationTrack = Math.floor(track.duration / 60) + ':' + ('0' + Math.floor(track.duration % 60)).slice(-2);
 

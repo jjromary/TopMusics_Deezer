@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import CardTrack from "../../Components/CardTrack";
-import { TracksContext } from "../../Context/TracksContext";
+import { FavoriteContext } from "../../Context/FavoritesContext";
 import { FavoriteContainer, FavoritesContent, FeedbackList } from "./styles";
 
 export default function Favorite() {
 
-  const { isFavorite } = useContext(TracksContext)
+  const { isFavorite } = useContext(FavoriteContext)
 
   return (
     <FavoriteContainer>
