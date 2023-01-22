@@ -15,7 +15,6 @@ export const FavoriteContext = createContext({} as favoriteContextType)
 export function FavoriteProvider({ children }: favoriteProviderProps) {
   const [isFavorite, setIsFavorite] = useState<Track[]>([])
 
-
   return (
     <FavoriteContext.Provider value={{
       isFavorite,

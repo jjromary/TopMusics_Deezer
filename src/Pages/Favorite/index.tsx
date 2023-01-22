@@ -1,19 +1,34 @@
-import { useContext } from "react";
+import axios from "axios";
+import { useContext, useEffect } from "react";
 import CardTrack from "../../Components/CardTrack";
 import { FavoriteContext } from "../../Context/FavoritesContext";
+import { Track } from "../../Context/TracksContext";
 import { ClearFavorites, FavoriteContainer, FavoritesContent, FeedbackList } from "./styles";
 
 export default function Favorite() {
   const { isFavorite, setIsFavorite } = useContext(FavoriteContext)
 
+
+
   const clearFavorites = () => {
     const resultado = window.confirm("Você realmente quer limpar a sua lista?");
     if (resultado === true) {
-      setIsFavorite([])
+      isFavorite.map((allFavorites) => {
+        axios.delete(`http://localhost:5000/favorites/${allFavorites.id}`)
+      })
     } else {
-
     }
   }
+
+  const loadFavoriteTracks = async () => {
+    const response = await axios.get('http://localhost:5000/favorites')
+    setIsFavorite(response.data)
+  }
+
+
+  useEffect(() => {
+    loadFavoriteTracks()
+  }, [isFavorite])
 
   return (
     <FavoriteContainer>
@@ -22,7 +37,7 @@ export default function Favorite() {
 
       <FavoritesContent>
 
-        {isFavorite.map((favs) => {
+        {isFavorite.map((favs: Track) => {
           return (
             <CardTrack key={favs.id} track={favs} />
           )

@@ -1,5 +1,6 @@
+import axios from 'axios';
 import { HeartStraight } from 'phosphor-react';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { FavoriteContext } from '../../Context/FavoritesContext';
 import { Track } from '../../Context/TracksContext';
 import { FavoriteButton } from '../../Pages/Home/styles';
@@ -19,19 +20,37 @@ interface CardTrackProps {
 
 export default function CardTrack({ track }: CardTrackProps) {
   const { setIsFavorite, isFavorite } = useContext(FavoriteContext)
+  const [verifyExist, setVerifyExist] = useState(false);
 
   const durationTrack = Math.floor(track.duration / 60) + ':' + ('0' + Math.floor(track.duration % 60)).slice(-2);
 
   const handleAddFavorite = () => {
-    setIsFavorite([track, ...isFavorite])
-
+    if (verifyExist === false) {
+      setIsFavorite([track, ...isFavorite])
+      axios.post("http://localhost:5000/favorites", track)
+    } else {
+      console.log("ja existe")
+    }
   }
 
   const handleRemoveFavorite = () => {
     setIsFavorite(isFavorite.filter((favorite) => favorite.title !== track.title))
+    axios.delete(`http://localhost:5000/favorites/${track.id}`)
+    verifyFavorite()
   }
 
-  const verifyFavorite = isFavorite.some((favorite) => favorite.title === track.title)
+  const verifyFavorite = () => {
+    if (isFavorite.some((favorite) => favorite.id === track.id)) {
+      setVerifyExist(true)
+    } else {
+      setVerifyExist(false)
+    }
+  }
+
+
+  useEffect(() => {
+    verifyFavorite()
+  }, [isFavorite])
 
   return (
     <CardTrackContainer >
@@ -58,18 +77,16 @@ export default function CardTrack({ track }: CardTrackProps) {
             </a>
           </ButtonContent>
         </ArtistContent>
-        <FavoriteButton onClick={verifyFavorite ? handleRemoveFavorite : handleAddFavorite}>
-          <HeartStraight size={32} color={verifyFavorite ? 'red' : 'black'} />
+        <FavoriteButton onClick={!verifyExist ? handleAddFavorite : handleRemoveFavorite}>
+          <HeartStraight size={32} color={''} />
         </FavoriteButton>
 
       </TopContent>
 
       <BottomContent>
-
         <PlayerContent>
           <Player linkPreview={track.preview} />
         </PlayerContent>
-
       </BottomContent>
 
 
