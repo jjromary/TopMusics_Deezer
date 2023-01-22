@@ -14,6 +14,7 @@ export const FavoriteContainer = styled.div`
 export const FeedbackList = styled.span`
   margin: 0 auto;
   font-size: 1.5rem;
+  margin-top: 5rem;
 `;
 
 export const FavoritesContent = styled.div`

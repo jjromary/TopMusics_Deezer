@@ -17,10 +17,8 @@ export default function Favorite() {
 
   return (
     <FavoriteContainer>
-      {isFavorite && isFavorite.length === 0 ? <FeedbackList>Lista Vazia</FeedbackList> : <FeedbackList>Minha Lista de Favoritas</FeedbackList>}
-
+      {isFavorite.length === 0 ? <FeedbackList>Lista Vazia</FeedbackList> : <FeedbackList>Minha Lista de Favoritas</FeedbackList>}
       {isFavorite.length > 0 ? <ClearFavorites onClick={clearFavorites}>Limpar lista completa</ClearFavorites> : ''}
-
 
       <FavoritesContent>
 
