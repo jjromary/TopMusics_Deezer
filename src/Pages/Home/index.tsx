@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import CardTrack from "../../Components/CardTrack";
 import Loading from "../../Components/Loading";
+import { SearchForm } from "../../Components/Search";
 import { SearchContext } from "../../Context/SearchContext";
 import { TracksContext } from "../../Context/TracksContext";
 import { HomeContainer } from "./styles";
@@ -30,6 +31,8 @@ export default function Home() {
   return (
     <>
       <HomeContainer>
+        <SearchForm />
+
 
         {isVisibleSearchResult && (
           fetchTrack.map((resultFetch) => {

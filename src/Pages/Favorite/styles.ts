@@ -22,3 +22,10 @@ export const FavoritesContent = styled.div`
   flex-wrap: wrap;
   gap: 2rem 1rem;
 `;
+
+export const ClearFavorites = styled.button`
+  width: 200px;
+  height: 50px;
+  border-radius: 0.8rem;
+  margin-top: 1rem;
+`;
