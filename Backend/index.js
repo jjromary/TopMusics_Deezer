@@ -7,10 +7,13 @@ const app = express();
 
 app.use(cors());
 
-app.get("/", (req, res) => {
+app.get("/:limit", (req, res) => {
+  const limit = req.params.limit;
+  res.json({ ok: true, message: "foi?" + q });
+
   const options = {
     method: "GET",
-    url: "https://api.deezer.com/chart",
+    url: `https://api.deezer.com/chart?limit=${limit}`,
   };
 
   axios
