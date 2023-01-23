@@ -1,8 +1,6 @@
 import { FastForward, Pause, Play, Rewind } from "phosphor-react";
 import { useEffect, useRef, useState } from "react";
 import { ButtonPlayer, CurrentTime, Duration, PlayContainer, ProgressBar } from "./styles";
-
-
 interface PlayerProps {
   linkPreview: string;
 }
@@ -73,23 +71,18 @@ export default function Player({ linkPreview }: PlayerProps) {
   return (
     <PlayContainer>
       <audio ref={audioPlayer} src={linkPreview} onLoadedMetadata={onLoadedMetadata} />
-
       <ButtonPlayer onClick={backFiveSec}>
         <Rewind size={24} />
       </ButtonPlayer>
-
       <ButtonPlayer onClick={handlePlayPause}>
         {isPLaying ? <Pause size={24} /> : <Play size={24} />}
       </ButtonPlayer>
-
       <ButtonPlayer onClick={forwardFiveSec}>
         <FastForward size={24} />
       </ButtonPlayer>
-
       <CurrentTime>
         {calculateTime(currentTime)}
       </CurrentTime>
-
       <ProgressBar>
         <input
           type='range'
@@ -98,13 +91,9 @@ export default function Player({ linkPreview }: PlayerProps) {
           onChange={changeRange}
         />
       </ProgressBar>
-
       <Duration>
         {!isNaN(duration) && calculateTime(duration)}
       </Duration>
-
-
     </PlayContainer>
-
   )
 }

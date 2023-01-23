@@ -7,6 +7,7 @@ export const SearchContainer = styled.form`
   display: flex;
   gap: 1rem;
   margin: 0 auto;
+  margin-top: 5rem;
 
   input {
     width: 80%;

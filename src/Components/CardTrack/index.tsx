@@ -1,7 +1,8 @@
 import { HeartStraight } from 'phosphor-react';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { FavoriteContext } from '../../Context/FavoritesContext';
 import { Track } from '../../Context/TracksContext';
+import { jsonServer } from '../../lib/axios';
 import { FavoriteButton } from '../../Pages/Home/styles';
 import Button from '../Button';
 import Player from '../Player';
@@ -18,20 +19,40 @@ interface CardTrackProps {
 }
 
 export default function CardTrack({ track }: CardTrackProps) {
+  const [verifyExist, setVerifyExist] = useState(false);
+  const [viewFavorite, setViewFavorite] = useState("")
   const { setIsFavorite, isFavorite } = useContext(FavoriteContext)
 
   const durationTrack = Math.floor(track.duration / 60) + ':' + ('0' + Math.floor(track.duration % 60)).slice(-2);
 
   const handleAddFavorite = () => {
-    setIsFavorite([track, ...isFavorite])
-
+    if (verifyExist === false) {
+      setIsFavorite([track, ...isFavorite])
+      jsonServer.post("/favorites", track)
+    } else {
+      console.log("ja existe")
+    }
   }
 
   const handleRemoveFavorite = () => {
     setIsFavorite(isFavorite.filter((favorite) => favorite.title !== track.title))
+    jsonServer.delete(`/favorites/${track.id}`)
+    verifyFavorite()
   }
 
-  const verifyFavorite = isFavorite.some((favorite) => favorite.title === track.title)
+  const verifyFavorite = () => {
+    if (isFavorite.some((favorite) => favorite.id === track.id)) {
+      setVerifyExist(true)
+      setViewFavorite('red')
+    } else {
+      setVerifyExist(false)
+      setViewFavorite('black')
+    }
+  }
+
+  useEffect(() => {
+    verifyFavorite()
+  }, [isFavorite])
 
   return (
     <CardTrackContainer >
@@ -44,7 +65,6 @@ export default function CardTrack({ track }: CardTrackProps) {
             <span><strong>Título:</strong> {track.title} - {durationTrack}</span>
             <span><strong>Álbum:</strong> {track.album.title}</span>
           </ArtistDetails>
-
           <ButtonContent>
             <a target="_blank" href={track.link}>
               <Button
@@ -58,21 +78,15 @@ export default function CardTrack({ track }: CardTrackProps) {
             </a>
           </ButtonContent>
         </ArtistContent>
-        <FavoriteButton onClick={verifyFavorite ? handleRemoveFavorite : handleAddFavorite}>
-          <HeartStraight size={32} color={verifyFavorite ? 'red' : 'black'} />
+        <FavoriteButton onClick={!verifyExist ? handleAddFavorite : handleRemoveFavorite}>
+          <HeartStraight size={32} color={viewFavorite} />
         </FavoriteButton>
-
       </TopContent>
-
       <BottomContent>
-
         <PlayerContent>
           <Player linkPreview={track.preview} />
         </PlayerContent>
-
       </BottomContent>
-
-
     </CardTrackContainer>
   )
 }

@@ -2,7 +2,6 @@ import { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useState
 import { Navigate } from "react-router-dom";
 import { api } from "../lib/axios";
 import { Track } from "./TracksContext";
-
 interface searchContextType {
   fetchTrack: Track[];
   search: string;
@@ -12,7 +11,6 @@ interface searchContextType {
   setFetchTrack: Dispatch<SetStateAction<Track[]>>
   loadFetchTrack: (e: React.FormEvent) => Promise<void>;
 }
-
 interface searchProviderProps {
   children: ReactNode;
 }
@@ -57,4 +55,3 @@ export function SearchProvider({ children }: searchProviderProps) {
     </SearchContext.Provider>
   )
 }
-

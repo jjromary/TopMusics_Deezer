@@ -4,10 +4,8 @@ export const CardTrackContainer = styled.div`
   width: 550px;
   height: 228px;
   padding: 0.75rem 1rem;
-
   display: flex;
   flex-direction: column;
-
   background-color: ${(props) => props.theme["white"]};
   border-radius: 1.125rem;
 
@@ -58,6 +56,7 @@ export const PlayerContent = styled.div`
 export const ButtonContent = styled.div`
   width: 100%;
   margin-top: 0.625rem;
+
   a {
     text-decoration: none;
   }

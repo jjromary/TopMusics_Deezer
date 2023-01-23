@@ -15,7 +15,5 @@ export default function Button({ height, width, background, children, colorText 
     <ButtonContainer height={height} width={width} background={background} colorText={colorText}>
       {children}
     </ButtonContainer>
-
-
   )
 }
