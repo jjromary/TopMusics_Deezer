@@ -23,7 +23,6 @@ export default function Home() {
     return () => intersactionObserver.disconnect()
   }
 
-
   useEffect(() => {
     infiniteLoading()
   }, [])
@@ -32,8 +31,6 @@ export default function Home() {
     <>
       <HomeContainer>
         <SearchForm />
-
-
         {isVisibleSearchResult && (
           fetchTrack.map((resultFetch) => {
             return (
@@ -41,7 +38,6 @@ export default function Home() {
             )
           })
         )}
-
         {search.length === 0 && (
           tracks.map((track) => {
             return (
@@ -50,12 +46,9 @@ export default function Home() {
           })
         )}
         {!isLoading && <Loading />}
-
         {/* Limit for start infinite scroll */}
         <div id='limiter' style={{ marginTop: '1rem' }} />
-
       </HomeContainer>
-
     </>
   )
 }

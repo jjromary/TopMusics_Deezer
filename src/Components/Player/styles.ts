@@ -36,9 +36,11 @@ export const ProgressBar = styled.div`
     margin: 10px 0;
     width: 100%;
   }
+
   input[type="range"]:focus {
     outline: none;
   }
+
   input[type="range"]::-webkit-slider-runnable-track {
     width: 100%;
     height: 8px;
@@ -48,6 +50,7 @@ export const ProgressBar = styled.div`
     border-radius: 5px;
     border: 1px solid #000000;
   }
+
   input[type="range"]::-webkit-slider-thumb {
     box-shadow: 0px 0px 0px #ffffff;
     border: 1px solid #000000;
@@ -59,9 +62,11 @@ export const ProgressBar = styled.div`
     -webkit-appearance: none;
     margin-top: -5.5px;
   }
+
   input[type="range"]:focus::-webkit-slider-runnable-track {
     background: #041418;
   }
+
   input[type="range"]::-moz-range-track {
     width: 100%;
     height: 8px;
@@ -71,6 +76,7 @@ export const ProgressBar = styled.div`
     border-radius: 5px;
     border: 1px solid #000000;
   }
+
   input[type="range"]::-moz-range-thumb {
     box-shadow: 0px 0px 0px #ffffff;
     border: 1px solid #000000;
@@ -80,6 +86,7 @@ export const ProgressBar = styled.div`
     background: #008f7f;
     cursor: pointer;
   }
+
   input[type="range"]::-ms-track {
     width: 100%;
     height: 8px;
@@ -88,18 +95,21 @@ export const ProgressBar = styled.div`
     border-color: transparent;
     color: transparent;
   }
+
   input[type="range"]::-ms-fill-lower {
     background: #041418;
     border: 1px solid #000000;
     border-radius: 10px;
     box-shadow: 1px 1px 1px #000000;
   }
+
   input[type="range"]::-ms-fill-upper {
     background: #041418;
     border: 1px solid #000000;
     border-radius: 10px;
     box-shadow: 1px 1px 1px #000000;
   }
+
   input[type="range"]::-ms-thumb {
     margin-top: 1px;
     box-shadow: 0px 0px 0px #ffffff;
@@ -110,9 +120,11 @@ export const ProgressBar = styled.div`
     background: #008f7f;
     cursor: pointer;
   }
+
   input[type="range"]:focus::-ms-fill-lower {
     background: #041418;
   }
+
   input[type="range"]:focus::-ms-fill-upper {
     background: #041418;
   }

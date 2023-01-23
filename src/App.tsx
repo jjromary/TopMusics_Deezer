@@ -14,7 +14,6 @@ function App() {
         <TrackProvider>
           <SearchProvider>
             <FavoriteProvider>
-
               <Router />
             </FavoriteProvider>
           </SearchProvider>

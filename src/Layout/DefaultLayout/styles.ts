@@ -5,7 +5,6 @@ export const LayoutDefaultContainer = styled.div`
   margin: 0 auto;
   height: 100vh;
   flex-direction: column;
-  overflow-y: auto;
 `;
 
 export const BackToTop = styled.a`

@@ -1,6 +1,5 @@
 import { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useState } from "react";
 import { api } from "../lib/axios";
-
 export interface Track {
   id: number;
   position: number;
@@ -43,7 +42,6 @@ export function TrackProvider({ children }: trackProviderProps) {
     })
     setTracks(response.data.tracks.data)
   }
-
 
   useEffect(() => {
     loadTracks()

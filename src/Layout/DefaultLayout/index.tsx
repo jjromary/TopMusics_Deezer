@@ -5,7 +5,6 @@ import { BackToTop, LayoutDefaultContainer } from "./styles";
 
 export default function defaultLayout() {
 
-
   return (
     <LayoutDefaultContainer >
       <div id="backToTop"></div>

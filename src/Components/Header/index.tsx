@@ -1,9 +1,9 @@
 
-import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { FavoriteContext } from "../../Context/FavoritesContext";
 import { Track } from "../../Context/TracksContext";
+import { jsonServer } from "../../lib/axios";
 import Button from "../Button";
 import { ButtonContent, FavoriteNumber, HeaderContainer, HeaderContent } from "./styles";
 
@@ -13,10 +13,9 @@ export default function Header() {
   const location = useLocation()
 
   const loadNumber = async () => {
-    const response = await axios.get("http://localhost:5000/favorites/")
+    const response = await jsonServer.get("/favorites/")
     setNumberFavorites(response.data)
   }
-
 
   useEffect(() => {
     loadNumber()
@@ -28,7 +27,6 @@ export default function Header() {
         <h1>Top Músicas <span>by Deezer</span></h1>
         <NavLink to={location.pathname === '/' ? '/favorite' : location.pathname === "/favorite" ? '/' : ''} style={{ textDecoration: "none" }}>
           <ButtonContent>
-
             <Button
               height="50px"
               width="247px"
@@ -41,9 +39,7 @@ export default function Header() {
               {numberFavorites.length}
             </FavoriteNumber>
           </ButtonContent>
-
         </NavLink>
-
       </HeaderContent>
     </HeaderContainer>
   )
