@@ -25,7 +25,7 @@ export function SearchProvider({ children }: searchProviderProps) {
   const loadFetchTrack = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const response = await api.get('/search/', {
+    const response = await api.get('/search/track', {
       params: {
         q: search,
       }
