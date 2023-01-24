@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "https://cors-anywhere.herokuapp.com/api.deezer.com/",
+  baseURL: "http://localhost:8080/",
 });
 
 export const jsonServer = axios.create({
