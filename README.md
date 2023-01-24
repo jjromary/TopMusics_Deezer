@@ -52,6 +52,8 @@ Para iniciar a fake API execute:
 ```sh 
 yarn json-server
 ```
+>Note: O Json-server foi usado para dar persistência de dados na funcionalidade ``Lista de favoritos``
+
 Entre na pasta backend que está na raiz do projeto
 ```sh
 yarn start:backend
