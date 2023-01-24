@@ -7,9 +7,8 @@ const app = express();
 
 app.use(cors());
 
-app.get("/:limit", (req, res) => {
-  const limit = req.params.limit;
-  res.json({ ok: true, message: "foi?" + q });
+app.get("/", (req, res) => {
+  const limit = req.query.limit;
 
   const options = {
     method: "GET",
