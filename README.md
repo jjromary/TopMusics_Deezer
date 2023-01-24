@@ -37,39 +37,47 @@ Clone o projeto em sua máquina:
 ```sh 
 git@github.com:jjromary/top-music-deezerAPI.git
 ```
+<br />
 
 Instale as dependências: 
 ```sh 
 yarn install
 ```
+<br />
 
 Inicie o projeto: 
 ```sh
 yarn dev
 ````
+<br />
 
 Para iniciar a fake API execute:
 ```sh 
 yarn json-server
 ```
+<br />
+
 >Note: O Json-server foi usado para dar persistência de dados na funcionalidade ``Lista de favoritos``
+
+<br />
 
 Entre na pasta backend que está na raiz do projeto
 ```sh
 yarn start:backend
 ```
 
-
 A aplicação será aberta na porta:3000 - acesse http://localhost:5173
+
+<br />
 
 A fakeAPI criada com o json-server será criada na porta :5000 - acesse http://localhost:5000
 
+<br />
+
 Você pode acessar o servidor na rota :8080 - acesse http://localhost:8080
 
-
-
-
-
+<br />
+<br />
 
 Feito com ❤️ por José Romary Brandão 👋🏽 [Entre em contato!](https://www.linkedin.com/in/joseromarybrandao/)
 
