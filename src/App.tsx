@@ -18,9 +18,9 @@ function App() {
             </FavoriteProvider>
           </SearchProvider>
         </TrackProvider>
-        <GlobalStyles />
       </BrowserRouter>
 
+      <GlobalStyles />
     </ThemeProvider>
   )
 }
