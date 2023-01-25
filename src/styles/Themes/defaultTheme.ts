@@ -13,4 +13,4 @@ export const defaultTheme: IStringIndex = {
 
   green500: "#00875f",
   green300: "#00b37e",
-} as const;
+};
